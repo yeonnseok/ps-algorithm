@@ -1,7 +1,7 @@
 def getGCD(a, b):
-    if a % b == 0 :
+    if a % b == 0:
         return b
-    return getGCD(b, a%b)
+    return getGCD(b, a % b)
 
 
 def GCD_ADD(nums):
