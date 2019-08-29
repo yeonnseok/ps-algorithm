@@ -1,20 +1,28 @@
-def makeOne(num):
-    count = 0
-    while num != 1:
-        if num % 3 == 0:
-            num /= 3
-            count += 1
-        elif num % 3 != 0:
-            num -= 1
-            count += 1
-        elif num % 2 == 0:
-            num /= 2
-            count += 1
-    return count
+def makeOne(n):
+    d = [0] * (n+1)
+    if n == 2 or n == 3:
+        return 1
+    if n > 3 and d[n]:
+        return d[n]
+
+    d[n] = makeOne(n - 1) + 1
+
+    if n % 3 == 0:
+        temp = makeOne(n//3) + 1
+        if d[n] > temp:
+            d[n] = temp
+
+    if n % 2 == 0:
+        temp = makeOne(n//2) + 1
+        if d[n] > temp:
+            d[n] = temp
+
+    return d[n]
 
 
 def main():
     num = int(input())
     print(makeOne(num))
+
 
 main()
