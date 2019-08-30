@@ -17,7 +17,6 @@ def solve(src):
     return min(d[3])
 
 
-
 def main():
     numOfHouse = int(input())
     src = []
