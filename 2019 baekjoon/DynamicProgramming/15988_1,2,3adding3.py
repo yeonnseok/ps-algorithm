@@ -12,7 +12,6 @@ def solve(n):
     return d[n] % mod
 
 
-
 def main():
     numOfCase = int(input())
     for i in range(numOfCase):
