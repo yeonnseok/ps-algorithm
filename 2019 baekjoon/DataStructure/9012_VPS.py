@@ -14,7 +14,7 @@ def validate(ps):
 numOfCase = int(input())
 ans = []
 for i in range(numOfCase):
-    #characters별로 분절하여 list에 담고싶으면 그냥 list(string)하면 된다.
+    # characters별로 분절하여 list에 담고싶으면 그냥 list(string)하면 된다.
     ps = list(input())
     ans.append(validate(ps))
 

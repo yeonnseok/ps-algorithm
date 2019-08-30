@@ -17,7 +17,7 @@ for i in range(numOfSent):
     sentence = ' '.join(bucket)
     ans.append(sentence)
 
-#한줄로 리스트 내부 요소 하나씩 출력하기
+# 한줄로 리스트 내부 요소 하나씩 출력하기
 list(map(print, ans))
 
 
