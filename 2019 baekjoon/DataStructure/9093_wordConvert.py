@@ -24,16 +24,15 @@
 def solve(src):
     stack = []
     ans = []
+    src += [' ']
     for i in range(len(src)):
-        if src[i] == " " or src[i] == "\n":
+        if src[i] == " ":
             while stack:
                 ans.append(stack.pop())
             ans.append(src[i])
         else:
             stack.append(src[i])
-    while stack:
-        ans.append(stack.pop())
-    return ans
+    return ''.join(ans)
 
 
 def main():
