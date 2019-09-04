@@ -27,5 +27,3 @@ else:
             ans.append('-')
             stackArray.pop(0)
     list(map(print, ans))
-
-
