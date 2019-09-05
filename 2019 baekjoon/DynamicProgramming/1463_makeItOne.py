@@ -1,8 +1,8 @@
 def makeOne(n):
     d = [0] * (n+1)
-    if n == 2 or n == 3:
-        return 1
-    if n > 3 and d[n]:
+    if n == 1:
+        return 0
+    if d[n]:
         return d[n]
 
     d[n] = makeOne(n - 1) + 1
