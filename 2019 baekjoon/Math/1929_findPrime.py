@@ -5,19 +5,21 @@ def solve(src):
     m, n = src[0], src[1]
     ans = []
     for num in range(m, n + 1):
-        if num > 1:
-            t_count = 0
-            for j in range(2, num):
-                if num % j == 0:
-                    t_count += 1
-            if t_count == 0:
-                ans.append(num)
+        prime = True
+        if num < 2:
+            prime = False
+        else:
+            for t in range(2, num):
+                if num % t == 0:
+                    prime = False
+        if prime is True:
+            ans.append(num)
     return ans
 
 
 def main():
     src = list(map(int, input().split()))
-    list(map(print, solve(src)))
+    print(solve(src))
 
 
 main()
