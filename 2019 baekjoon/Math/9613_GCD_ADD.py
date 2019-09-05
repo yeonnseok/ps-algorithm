@@ -3,6 +3,12 @@ def getGCD(a, b):
         return b
     return getGCD(b, a % b)
 
+# 유클리드 호제법
+# def GCD(a, b):
+#     if b == 0:
+#         return a
+#     else:
+#         return GCD(b, a%b)
 
 def GCD_ADD(nums):
     sum = 0
@@ -24,3 +30,7 @@ def main():
 
 
 main()
+
+
+
+
