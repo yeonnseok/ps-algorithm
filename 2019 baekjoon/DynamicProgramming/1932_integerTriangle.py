@@ -22,8 +22,6 @@ def main():
     for _ in range(n):
         aa = list(map(int, input().split()))
         src.append(aa)
-
-
     print(solve(n, src))
 
 

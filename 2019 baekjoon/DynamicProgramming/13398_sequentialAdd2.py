@@ -4,6 +4,7 @@ def solve(n, src):
 
     for i in range(1, n + 1):
         dl[i] = max(dl[i-1] + src[i], src[i])
+
     for i in reversed(range(n)):
         dr[i] = max(dr[i+1] + src[i], src[i])
 
@@ -11,8 +12,8 @@ def solve(n, src):
     for i in range(1, n):
         if ans < dl[i - 1] + dr[i + 1]:
             ans = dl[i - 1] + dr[i + 1]
-
     return ans
+
 
 def main():
     n = int(input())

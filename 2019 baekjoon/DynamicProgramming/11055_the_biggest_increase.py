@@ -10,8 +10,6 @@ def solve(n, src):
     return max(d)
 
 
-
-
 def main():
     n = int(input())
     src = [0] + list(map(int, input().split()))
