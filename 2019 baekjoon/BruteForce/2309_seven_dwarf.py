@@ -18,7 +18,7 @@ def main():
     src = []
     for _ in range(9):
         src.append(int(input()))
-
     print(solve(src))
 
 main()
+
