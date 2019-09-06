@@ -9,7 +9,7 @@ def solve(n, src):
 
     ans = []
     n = 4
-    for i in reversed(range(1, len(src))): # 6, 5, 4, 3, 2, 1
+    for i in reversed(range(1, len(src))):
         for j in reversed(range(1, max(d) + 1)):
             if d[i] == j and j == n:
                 ans.insert(0, i)
@@ -26,7 +26,7 @@ def solve(n, src):
 def main():
     n = int(input())
     src = [0] + list(map(int, input().split()))
-    solve(n, src)
+    print(solve(n, src))
 
 
 main()
