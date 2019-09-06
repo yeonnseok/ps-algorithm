@@ -6,6 +6,7 @@ def solve(n, m , src):
                 ans.append(src[i][j] + src[i][j+1] + src[i][j+2] + src[i][j+3])
             if i + 3 < n:
                 ans.append(src[i][j] + src[i+1][j] + src[i+2][j] + src[i+3][j])
+
             if j + 2 < m:
                 temp = src[i][j] + src[i][j+1] + src[i][j+2]
                 if i - 1 > 0:
@@ -22,9 +23,10 @@ def solve(n, m , src):
                     ans.append(temp2)
                     ans.append(temp3)
                     ans.append(temp4)
+
             if j + 1 < m and i + 1 < n:
                 ans.append(src[i][j] + src[i][j + 1] + src[i + 1][j] + src[i + 1][j + 1])
-            # 10, 11, 12, 13, 14, 15
+
             if i + 2 < n:
                 temp = src[i][j] + src[i + 1][j] + src[i + 2][j]
                 if j + 1 < m:
@@ -41,12 +43,11 @@ def solve(n, m , src):
                     ans.append(temp2)
                     ans.append(temp3)
                     ans.append(temp4)
-            # 16, 17
+
             if i + 1 < n and j + 1 < m and j - 1 > 0:
                 ans.append(src[i][j] + src[i][j+1] + src[i+1][j] + src[i+1][j-1])
                 ans.append(src[i][j] + src[i][j-1] + src[i+1][j] + src[i+1][j+1])
 
-            # 18, 19
             if i - 1 > 0 and j + 1 < m and i + 1 < n:
                 ans.append(src[i][j] + src[i - 1][j] + src[i][j + 1] + src[i + 1][j + 1])
                 ans.append(src[i][j] + src[i][j - 1] + src[i + 1][j - 1] + src[i - 1][j])
