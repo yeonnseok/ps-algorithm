@@ -1,35 +1,36 @@
-def solve(n, m, src):
-    # 현재 채널은 100번
-    # 100에서
-    ll = list(str(n))
-    count = 0
-    temp = []
-    if n - 100 < len(ll):
-        count = n - 100
-    else:
-        for i in range(len(ll)):
-            if int(ll[i]) in src:
-                idx = 1
-                while int(ll[i]) - idx in src:
-                    idx += 1
-                if int(ll[i]) - idx >= 0:
-                    temp.append(str(int(ll[i]) - idx))
-                elif int(ll[i]) - idx < 0:
-                    temp.append(str(int(ll[i]) + idx))
-            else:
-                temp.append(ll[i])
-
-        count += len(ll)
-        count += abs((n - int(''.join(temp))))
-
-    return count
+def possible(c, breaks):
+    if c == 0:
+        if 0 in breaks:
+            return 0
+        else:
+            return 1
+    length = 0
+    while c > 0:
+        if c % 10 in breaks:
+            return 0
+        length += 1
+        c //= 10
+    return length
 
 
 def main():
     n = int(input())
     m = int(input())
-    src = list(map(int, input().split()))
-    print(solve(n, m, src))
+    breaks = list(map(int, input().split()))
+
+    # 정답의 초기값
+    ans = abs(n - 100)
+
+    for i in range(1000001):
+        length = possible(i, breaks)
+        if length > 0:
+            press = abs(i - n)
+
+            if ans > length + press:
+                ans = length + press
+    print(ans)
 
 
 main()
+
+
