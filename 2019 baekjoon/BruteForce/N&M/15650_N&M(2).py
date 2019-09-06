@@ -1,13 +1,12 @@
-def solve(index, n, m, start, ans, check):
-    if index == m:
+def solve(index, n, m, selected, ans):
+    if selected == m:
         return print(' '.join(map(str, ans)))
 
-    for i in range(start, n + 1):
-        if check[i]: continue
-        check[i] = True
-        ans[index] = i
-        solve(index + 1, n, m, i + 1, ans, check)
-        check[i] = False
+    if index > n: return
+    ans[selected] = index
+    solve(index + 1, n, m, selected + 1, ans)
+    ans[selected] = 0
+    solve(index + 1, n, m, selected, ans)
 
 
 def main():
@@ -15,9 +14,8 @@ def main():
     n, m = src[0], src[1]
 
     ans = [0] * m
-    check = [0] * (n + 1)
 
-    solve(0, n, m, 1, ans, check)
+    solve(1, n, m, 0, ans)
 
 
 main()
