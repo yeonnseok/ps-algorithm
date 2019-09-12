@@ -1,3 +1,3 @@
-# 2019-algorithm
+# ps-algorithm
 
 algorithm problem solving using python3
