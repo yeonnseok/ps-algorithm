@@ -8,6 +8,9 @@ def solve(n, src):
     for i in reversed(range(n)):
         dr[i] = max(dr[i+1] + src[i], src[i])
 
+    print(dl)
+    print(dr)
+
     ans = max(dl)
     for i in range(1, n):
         if ans < dl[i - 1] + dr[i + 1]:
