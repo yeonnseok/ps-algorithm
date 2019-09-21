@@ -13,6 +13,9 @@ def solve(n, src):
             if src[j] < src[i] and d2[j] + 1 > d2[i]:
                 d2[i] = d2[j] + 1
     ans = []
+    print(d1)
+    print(d2)
+
     for i in range(len(d1)):
        ans.append(d1[i] + d2[i] - 1)
 
