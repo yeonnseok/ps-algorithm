@@ -23,7 +23,7 @@ def go(a, l):
                 for j in range(l):
                     if i + j > n:
                         return False
-                    if a[i] != a[i+1]:
+                    if a[i] != a[i+j]:
                         return False
                     if c[i+j]:
                         return False

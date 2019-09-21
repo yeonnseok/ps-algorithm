@@ -34,7 +34,7 @@ def simulate():
             for gx, gy in group:
                 low[gy] = max(low[gy], gx)
                 a[gx][gy] = '.'
-            lowest = r
+            lowest = r   #이게 땅이다.
             for j in range(c):
                 if low[j] == -1:
                     continue
