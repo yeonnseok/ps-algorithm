@@ -23,6 +23,8 @@ for l in range(k):
         else:
             break
 
+    print(d)
+
     for i in range(n):
         if d[i] == 0:
             continue
