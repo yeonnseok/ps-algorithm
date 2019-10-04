@@ -32,23 +32,17 @@ def karatsuba(a, b):
         return
     if an <= 50:
         return multiply(a, b)
+
     half = an // 2
-    a0 = a[:half]
-    a1 = a[half:]
-    b0 = b[:min(half, bn)]
-    b1 = b[min(half, bn):bn]
+    a1 = a[:half]
+    a0 = a[half:]
+    b1 = b[:min(half, bn)]
+    b0 = b[min(half, bn):bn]
 
-    z2 = karatsuba(a1, b1)
-    z0 = karatsuba(a0, b0)
-
-    a0 = a0 + a1
-    b0 = b0 + b1
-
-    z1 = karatsuba(a0, b0)
-    z1 -= z0
-    z1 -= z2
-
-    ret = z0 + z1*(10**half) + z2*(10**(2*half))
+    z2 = karatsuba(a0, b0)
+    z0 = karatsuba(a1, b1)
+    z1 = karatsuba(a0+a1, b0+b1) - z0 - z2
+    ret = z0*(10**(2*half)) + z1*(10**half) + z2
     return ret
 
 

@@ -14,7 +14,6 @@ def reverse(it):
     upperRight = reverse(it)
     lowerLeft = reverse(it)
     lowerRight = reverse(it)
-
     return 'x' + lowerLeft + lowerRight + upperLeft + upperRight
 
 
