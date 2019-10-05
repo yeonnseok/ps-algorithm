@@ -20,8 +20,11 @@ def merge_sort(c):
     if n == 1:
         return c
     mid = n//2
-    return merge(merge_sort(c[:mid]), merge_sort(c[mid:]))
+    left = merge_sort(c[:mid])
+    right = merge_sort(c[mid:])
+    return merge(left, right)
 
 
 li = [38, 27, 43, 3, 9, 82, 10]
 print(merge_sort(li))
+
