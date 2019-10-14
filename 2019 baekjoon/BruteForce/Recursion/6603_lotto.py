@@ -1,21 +1,17 @@
-# 6개의 수를 고른다.
+k, *a = map(int, input().split())
+print(a)
 
 
-def go(a, index, lotto):
-    if len(lotto) == 6:
-        print(' '.join(map(str, lotto)))
+def lotto_num(index, cur):
+    if len(cur) == 6:
+        print(' '.join(map(str, cur)))
         return
-    if index == len(a):
+
+    if index == 7:
         return
-    # 해당 인덱스번째 자리의 숫자를 선택하고 안하고 둘다 의미가 있으므로,,
-    go(a, index + 1, lotto+[a[index]])
-    go(a, index + 1, lotto)
+
+    lotto_num(index + 1, cur + [a[index]])
+    lotto_num(index + 1, cur)
 
 
-while True:
-    n, *a = list(map(int, input().split()))
-    if n == 0:
-        break
-    go(a, 0, [])
-    print()
-
+lotto_num(0, [])
