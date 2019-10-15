@@ -1,51 +1,50 @@
 n, m = map(int, input().split())
-a = [list(map(int, input().split())) for _ in range(n)]
-c = [[False]*m for _ in range(n)]
-
+board = [list(map(int, input().split())) for _ in range(n)]
+check = [[False] * m for _ in range(n)]
+ans = 0
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
 
 
-def solve(x, y, sum, cnt):
+def tetromino(x, y, total, cnt):
     global ans
     if cnt == 4:
-        if ans < sum:
-            ans = sum
+        if ans < total:
+            ans = total
         return
-    if x < 0 or x >= n or y < 0 or y >= m:
-        return
-    if c[x][y]:
-        return
-    c[x][y] = True
+
     for k in range(4):
-        solve(x+dx[k], y+dy[k], sum + a[x][y], cnt + 1)
-    c[x][y] = False
+        nx, ny = x + dx[k], y + dy[k]
+        if 0 <= nx < n and 0 <= ny < m:
+            if not check[nx][ny]:
+                check[nx][ny] = True
+                tetromino(nx, ny, total + board[nx][ny], cnt + 1)
+                check[nx][ny] = False
 
 
-ans = 0
 for i in range(n):
     for j in range(m):
-        solve(i, j, 0, 0)
+        tetromino(i, j, 0, 0)
+
         if j + 2 < m:
-            temp = a[i][j] + a[i][j+1] + a[i][j+2]
-            if i - 1 >= 0:
-                temp2 = temp + a[i-1][j+1]
-                if ans < temp2:
-                    ans = temp2
+            temp1 = board[i][j] + board[i][j+1] + board[i][j+2]
             if i + 1 < n:
-                temp2 = temp + a[i+1][j+1]
+                temp2 = temp1 + board[i+1][j+1]
                 if ans < temp2:
                     ans = temp2
+            if i - 1 >= 0:
+                temp2 = temp1 + board[i-1][j+1]
+                if ans < temp2:
+                    ans = temp2
+
         if i + 2 < n:
-            temp = a[i][j] + a[i+1][j] + a[i+2][j]
+            temp1 = board[i][j] + board[i+1][j] + board[i+2][j]
             if j + 1 < m:
-                temp2 = temp + a[i+1][j+1]
+                temp2 = temp1 + board[i+1][j+1]
                 if ans < temp2:
                     ans = temp2
             if j - 1 >= 0:
-                temp2 = temp + a[i+1][j-1]
+                temp2 = temp1 + board[i+1][j-1]
                 if ans < temp2:
                     ans = temp2
 print(ans)
-
-
