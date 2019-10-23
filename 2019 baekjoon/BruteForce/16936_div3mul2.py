@@ -26,3 +26,4 @@ ans = []
 for i in range(n):
     ans.append(a[i][0])
 print(ans)
+
