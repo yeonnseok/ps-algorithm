@@ -2,8 +2,6 @@ dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
 
 
-
-
 def go(x, y, cnt):
     ans = -1
     if cnt == 0:
@@ -18,18 +16,17 @@ def go(x, y, cnt):
             ny += dy[k]
         nx -= dx[k]
         ny -= dy[k]
-        if x != nx and y != ny:
+        if not (x == nx and y == ny):
             temp = go(nx, ny, cnt)
             if temp != -1:
                 if ans == -1 or ans > temp + 1:
                     ans = temp + 1
 
-        while x != nx and y != ny:   # 다시 원상 복구
+        while not (x == nx and y == ny):   # 다시 원상 복구
             a[nx][ny] = '.'
             cnt += 1
             nx -= dx[k]
             ny -= dy[k]
-
     return ans
 
 
@@ -38,7 +35,7 @@ a = [list(input()) for _ in range(n)]
 d = [[False] * m for _ in range(n)]
 cnt = 0
 for i in range(n):
-    for j in range(n):
+    for j in range(m):
         if a[i][j] == '.':
             cnt += 1
 
