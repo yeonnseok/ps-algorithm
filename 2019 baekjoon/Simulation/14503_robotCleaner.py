@@ -16,8 +16,9 @@ while True:
     # 네 방향 모두 청소가 되어있을경우
     if a[x+1][y] != 0 and a[x-1][y] != 0 and a[x][y-1] != 0 and a[x][y+1] != 0:
         # 벽이면 동작그만
-        if a[x-dx[d]][y-dx[d]] == 1:
-            break
+        if a[x-dx[d]][y-dy[d]] == 1:
+            print(cnt)
+            exit()
         # 벽이 아니면 바로 후진
         else:
             x -= dx[d]

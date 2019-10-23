@@ -31,6 +31,7 @@ for l in range(1, cnt + 1):
     q = deque()
     for i in range(n):
         for j in range(n):
+            d[i][j] = -1
             if g[i][j] == l:
                 q.append((i, j))
                 d[i][j] = 0

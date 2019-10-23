@@ -37,7 +37,7 @@ for _ in range(t):
                         q.append(nxt)
                         d[nxt] = d[x] + 1
                         _from[nxt] = x
-                        _how[nxt] = 'L'
+                        _how[nxt] = 'D'
             if nxt == x - 1:
                 if nxt == -1:
                     nxt = 9999

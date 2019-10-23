@@ -2,7 +2,6 @@ from collections import deque
 
 n, m = map(int, input().split())
 next = [i for i in range(101)]
-a = [i for i in range(101)]
 d = [-1] * 101
 
 for _ in range(n):

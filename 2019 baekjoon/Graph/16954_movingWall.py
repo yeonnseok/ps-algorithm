@@ -20,9 +20,9 @@ while q:
         nx, ny = x + dx[k], y + dy[k]
         nt = min(t + 1, 8)
         if 0 <= nx < n and 0 <= ny < n:
-            if nx-t >= 0 and a[nx-t][ny] == '#':
+            if nx-t >= 0 and a[nx-t][ny] == '#': # 현재 벽이있는것
                 continue
-            if nx-t-1 >= 0 and a[nx-t-1][ny] == '#':
+            if nx-t-1 >= 0 and a[nx-t-1][ny] == '#': # 앞으로 벽이 내려오는것
                 continue
             if not check[nx][ny][nt]:
                 check[nx][ny][nt] = True
