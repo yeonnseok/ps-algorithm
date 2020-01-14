@@ -11,7 +11,7 @@ public class P14225 {
 
 	static int n;
 	static int[] nums;
-	static boolean[] check = new boolean[20 * 10000 + 1];
+	static boolean[] check = new boolean[20 * 100000 + 1];
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		System.setIn(new FileInputStream("src/input/P14225.txt"));
