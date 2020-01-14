@@ -8,19 +8,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class P2252 {
+public class P1766 {
 
 	static int n, m;
 	static int[] indegree;
-	static Queue<Integer> q = new LinkedList<>();
+	static PriorityQueue<Integer> q = new PriorityQueue<>();
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		System.setIn(new FileInputStream("src/input/P2252.txt"));
+		System.setIn(new FileInputStream("src/input/P1766.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
@@ -46,20 +45,20 @@ public class P2252 {
 		
 		for (int i = 1; i < n + 1; i++) {
 			if (indegree[i] == 0) {
-				bw.write(i + " ");
 				q.offer(i);
 			}
 		}
 		
 		while (!q.isEmpty()) {
 			int now = q.poll();
+			bw.write(now + " ");
 			for (int i : graph[now]) {
 				indegree[i] --;
 				if (indegree[i] == 0) {
 					q.offer(i);
-					bw.write(i + " ");
 				}
 			}
+			
 			
 		}
 	

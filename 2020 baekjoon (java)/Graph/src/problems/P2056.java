@@ -13,21 +13,26 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class P2252 {
-
-	static int n, m;
+public class P2056 {
+	
+	
+	static int n;
 	static int[] indegree;
+	static int[] work;
+	static int[] d;
 	static Queue<Integer> q = new LinkedList<>();
-
+	static int total;
+	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		System.setIn(new FileInputStream("src/input/P2252.txt"));
+		System.setIn(new FileInputStream("src/input/P2056.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		n = Integer.parseInt(st.nextToken());
-		m = Integer.parseInt(st.nextToken());
 		
+		work = new int[n + 1];
+		d = new int[n + 1];
 		indegree = new int[n + 1];
 		List<Integer> graph[] = new ArrayList[n + 1];
 		
@@ -35,19 +40,25 @@ public class P2252 {
 			graph[i] = new ArrayList<>();
 		}
 
-		for (int i = 1; i < m + 1; i ++) {
+		
+		
+		for (int i = 1; i < n + 1; i ++) {
 			st = new StringTokenizer(br.readLine());
-			int from = Integer.parseInt(st.nextToken());
-			int to = Integer.parseInt(st.nextToken());
-			
-			graph[from].add(to);
-			indegree[to] ++;
+			int cost = Integer.parseInt(st.nextToken());
+			int cnt = Integer.parseInt(st.nextToken());
+			work[i] = cost;
+			for (int j = 0; j < cnt ; j++) {
+				int from = Integer.parseInt(st.nextToken());
+				graph[from].add(i);
+				indegree[i] ++;
+			}
 		}
 		
 		for (int i = 1; i < n + 1; i++) {
 			if (indegree[i] == 0) {
-				bw.write(i + " ");
 				q.offer(i);
+				d[i] = work[i];
+				
 			}
 		}
 		
@@ -55,14 +66,21 @@ public class P2252 {
 			int now = q.poll();
 			for (int i : graph[now]) {
 				indegree[i] --;
+				if (d[i] < d[now] + work[i]) {
+					d[i] = d[now] + work[i];
+				}
 				if (indegree[i] == 0) {
 					q.offer(i);
-					bw.write(i + " ");
 				}
 			}
-			
 		}
-	
+		
+		for (int i = 1; i < n + 1; i++) {
+			if (total < d[i]) {
+				total = d[i];
+			}
+		}
+		bw.write(total + "");
 			
 		bw.flush();
 		bw.close();
