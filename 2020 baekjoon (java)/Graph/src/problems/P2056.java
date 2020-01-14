@@ -39,7 +39,6 @@ public class P2056 {
 		for (int i = 1; i < n + 1; i++) {
 			graph[i] = new ArrayList<>();
 		}
-
 		
 		
 		for (int i = 1; i < n + 1; i ++) {
