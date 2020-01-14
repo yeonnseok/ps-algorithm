@@ -14,6 +14,7 @@ for i in range(m):
 for i in range(n):
     a[i].sort()
 
+print(a)
 
 def dfs(x):
     global check
@@ -29,7 +30,6 @@ def bfs(start):
     q = deque()
     q.append(start)
     ch[start] = True
-
     while q:
         x = q.popleft()
         print(x, end=" ")

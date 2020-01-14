@@ -1,6 +1,10 @@
 n = 3
 a = [i for i in range(n)]
-d = [[0,2,3],[2,0,6],[3,6,0]]
+d = [
+    [0, 2, 3],
+    [2, 0, 6],
+    [3, 6, 0]
+]
 visited = [False] * n
 
 
@@ -10,7 +14,7 @@ def tsp(path, visited, cur):
         if path:
             return cur + d[path[0]][path[-1]]
 
-    ret = 10000000000000
+    ret = 100000000000000
     for i in range(n):
         if visited[i]:
             continue
@@ -23,5 +27,6 @@ def tsp(path, visited, cur):
         visited[i] = False
         path.pop()
     return ret
+
 
 print(tsp([], visited, 0))
