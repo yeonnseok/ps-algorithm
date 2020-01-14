@@ -69,7 +69,7 @@ public class P1922 {
 			Edge edge = pq.poll();
 			if (check[edge.to] == true) {
 				continue;
-			}P1197.java
+			}
 			check[edge.to] = true; 
 			ans += edge.cost;
 			for (Edge e : graph[edge.to]) {//  ¼±º°µÈ edge.to

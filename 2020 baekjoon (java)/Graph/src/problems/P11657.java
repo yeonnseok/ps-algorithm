@@ -8,12 +8,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class P1197 {
+public class P11657 {
 
 	static class Edge implements Comparable<Edge>{
 		int from;
@@ -33,13 +34,13 @@ public class P1197 {
 	}
 	static int n, m;
 	static int ans;
-	static int[] parent;
+	static final int INF = 100000000;
 	static List<Edge> a = new ArrayList<>();
-	static boolean[] check;
+	static int[] dist;
 	static PriorityQueue<Edge> pq = new PriorityQueue<>();
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		System.setIn(new FileInputStream("src/input/P1197.txt"));
+		System.setIn(new FileInputStream("src/input/P11657.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
@@ -47,10 +48,6 @@ public class P1197 {
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
 		
-		parent = new int[n + 1];
-		for (int i = 1; i < n + 1; i++) {
-			parent[i] = i;
-		}
 
 		for (int i = 0; i < m; i ++) {
 			st = new StringTokenizer(br.readLine());
@@ -59,39 +56,35 @@ public class P1197 {
 			int cost = Integer.parseInt(st.nextToken());
 			a.add(new Edge(from, to, cost));
 		}
-		Collections.sort(a);
+
+		dist = new int[n + 1];
+		Arrays.fill(dist, INF);
 		
-		int ans = 0;
-		for (Edge e : a) {
-			int x = find(e.from);
-			int y = find(e.to);
-			if (x != y) { //  연결이 안되어 있다면!?
-				union(x, y); // cost 더하고 집합도 합침.
-				ans += e.cost;
+		boolean negative_cycle = false;
+		dist[1] = 0; // 처음시작까지의 누적 경로 0
+		for (int i = 1; i < n + 1; i++) {
+			for (Edge e : a) {
+				int x = e.from;
+				int y = e.to;
+				int z = e.cost;
+				if (dist[x] != INF && dist[y] > dist[x] + z) {
+					dist[y] = dist[x] + z;
+					if(i == n) { // 선택된 간선의 최소 갯수는 n-1개 
+						negative_cycle = true;
+					}
+				}
+			}
+		}
+		if (negative_cycle) {
+			System.out.println("-1");
+		} else {
+			for (int i = 2; i < n + 1; i++) {
+				if (dist[i] == INF) dist[i] = -1;
+				System.out.println(dist[i]);
 			}
 		}
 		
-		bw.write(ans+"");
-		bw.flush();
-		bw.close();
 	}
 	
-	public static void union(int a, int b) {
-		int x = find(a);
-		int y = find(b);
-		
-		if (x < y) {
-			parent[y] = x;
-		} else if (x > y) {
-			parent[x] = y;
-		}
-	}
 	
-	public static int find(int x) {
-		if (parent[x] == x) {
-			return x;
-		}
-		
-		return parent[x] = find(parent[x]);
-	}
 }
