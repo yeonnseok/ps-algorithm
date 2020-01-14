@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javafx.util.Pair;
-
 public class P14888 {
 
 	static class Pair{
