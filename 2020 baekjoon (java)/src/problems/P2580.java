@@ -1,69 +1,73 @@
 package problems;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
-public class P9663 {
-	static int n, m;
-	static boolean[][] a;
-	static boolean[] check_col;
-	static boolean[] check_dig;
-	static boolean[] check_dig2;
-	static int ans = 0;
+public class P2580 {
+	static final int n = 9;
+	static int[][] a;
+	static boolean[][] check_col;
+	static boolean[][] check_row;
+	static boolean[][] check_square;
 	
-	public static void main(String[] args) throws FileNotFoundException, IOException {
-		System.setIn(new FileInputStream("src/input/P9663.txt"));
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static void main(String[] args) throws FileNotFoundException {
+		System.setIn(new FileInputStream("src/input/P2580.txt"));
+		Scanner sc = new Scanner(System.in);
 		
-		n = Integer.parseInt(br.readLine());
 		
-		a = new boolean[15][15];
-		check_col = new boolean[15];
-		check_dig = new boolean[40];
-		check_dig2 = new boolean[40];
+		a = new int[n][n];
+		check_col = new boolean[n][n+1];
+		check_row = new boolean[n][n+1];
+		check_square = new boolean[n][n+1];
 		
-		System.out.println(calc(0));
-	}
-	
-	public static int calc(int row) {
-		if (row == n) {
-			return 1;
-		}
-		
-		int cnt = 0;
-		for (int col = 0; col < n; col++) {
-			
-			if (check(row, col)) {
-				check_col[col] = true;
-				check_dig[row + col] = true;
-				check_dig2[row - col + n] = true;
-				a[row][col] = true; //퀸을 놓을 경우;
-				cnt += calc(row + 1);
-				check_col[col] = false;
-				check_dig[row+col] = false;
-				check_dig2[row-col+n] = false;
-				a[row][col] = false;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				a[i][j] = sc.nextInt();
+				check_row[i][a[i][j]] = true;
+				check_col[j][a[i][j]] = true;
+				check_square[square(i, j)][a[i][j]] = true;
 			}
 		}
-		return cnt;
+
+		solve(0);
 	}
 	
-	public static boolean check(int row, int col) {
-		if (check_col[col]) {
-			return false;
+	public static void solve(int z) {
+		if (z == 81) { // 종료
+			printAnswer();
+			System.exit(0);
 		}
 		
-		if (check_dig[row + col]) {
-			return false;
+		System.out.println("count");
+		int x = z / n;
+		int y = z % n;
+		if (a[x][y] != 0) {
+			solve(z + 1);
+		} else { // 0일 경우에는
+			for (int number = 1; number < 10; number ++ ) {
+				if (!check_col[y][number] && !check_row[x][number] && !check_square[square(x, y)][number]) {
+					check_col[y][number] = check_row[x][number]  = check_square[square(x, y)][number] = true;
+					a[x][y] = number;
+					solve(z+1);
+					a[x][y] = 0;
+					check_col[y][number] = check_row[x][number]  = check_square[square(x, y)][number] = false;
+				}
+			}                        
 		}
 		
-		if (check_dig2[row - col + n]) {
-			return false;
-		}
-		return true;
 	}
-
+	
+	public static int square(int x, int y) {
+		return  (x / 3) * 3 + (y / 3);
+	}
+	
+	public static void printAnswer() {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print(a[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
 }

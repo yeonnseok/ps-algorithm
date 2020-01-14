@@ -24,7 +24,7 @@ public class P9663 {
 		check_col = new boolean[15];
 		check_dig = new boolean[40];
 		check_dig2 = new boolean[40];
-		
+
 		System.out.println(calc(0));
 	}
 	
@@ -33,16 +33,18 @@ public class P9663 {
 			return 1;
 		}
 		
-		int cnt = 0;
+		int cnt = 0; //  cnt 를 안에 써줄 경우, 상태를 원상복구한후 , 함수 안에서  return 해줘야한다.
 		for (int col = 0; col < n; col++) {
 			
 			if (check(row, col)) {
+				// 체크인
 				check_col[col] = true;
 				check_dig[row + col] = true;
 				check_dig2[row - col + n] = true;
-				a[row][col] = true; //퀸을 놓을 경우;
-				cnt += calc(row + 1);
-				check_col[col] = false;
+				a[row][col] = true; // 퀸을 놓을 경우;
+				cnt += calc(row + 1); // 다음행에 퀸을 놓음.
+				// 체크아웃, 상태 원상복구
+				check_col[col] = false; 
 				check_dig[row+col] = false;
 				check_dig2[row-col+n] = false;
 				a[row][col] = false;
