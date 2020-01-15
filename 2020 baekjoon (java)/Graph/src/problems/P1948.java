@@ -101,7 +101,7 @@ public class P1948 {
 		while(!q.isEmpty()) {
 			int rev = q.poll();
 			for (Edge ee : graph2[rev]) {
-				if (!c[ee.to] && ee.cost == (d[rev] - d[ee.to])) {
+				if (c[rev] && ee.cost == (d[rev] - d[ee.to])) {
 					ans ++;
 					c[ee.to] = true; 
 				}
