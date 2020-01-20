@@ -41,17 +41,15 @@ public class P16954 {
 		for(int i = 0; i < N; i++) {
 			char[] row = br.readLine().toCharArray();
 			for (int j = 0; j < N; j++) {
-				a[i][j] = row[i];
+				a[i][j] = row[j];
 			}
 		}
 
 		// 2. 시작 및 종료 칸
-		int s_x = N-1;
-		int s_y = 0;
 		int e_x = 0;
 		int e_y = N-1;
-		q.offer(new Point(s_x, s_y, 0));  // t는 8초까지만 준비해놓으면 된다.
-		dist[s_x][s_y][0] = true;
+		q.offer(new Point(7, 0, 0));  // t는 8초까지만 준비해놓으면 된다.
+		dist[7][0][0] = true;
 		
 		// 3. bfs
 		boolean ans = false;	
@@ -75,7 +73,7 @@ public class P16954 {
 			}
 		}
 		
-		System.out.println(ans == true ? 1 : 0);
+		System.out.println(ans ? 1 : 0);
 	}
 
 }
