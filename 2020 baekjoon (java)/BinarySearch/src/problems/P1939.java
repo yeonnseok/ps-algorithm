@@ -56,7 +56,7 @@ public class P1939 {
             int mid = left + (right-left)/2;
             Arrays.fill(c,false);
             if (go(start, mid)) {
-                ans = mid;
+            	ans = Math.max(ans, mid);
                 left = mid+1;
             } else {
                 right = mid-1;
