@@ -38,7 +38,7 @@ public class P12738 {
 		for (int i = 0; i < n; i++) {
 			int num = Integer.parseInt(st.nextToken());
 			int p = lower_bound(a, len, num);
-			a[p] = num;
+			a[p] = num; //a 가 결국 덮어씌우면서 d역할도하고있다.
 			if (len == p) {
 				len += 1;
 			}
